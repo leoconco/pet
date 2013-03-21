@@ -16,6 +16,13 @@
         <relativePath>../ParentPet</relativePath>
     </parent>
 
+    <dependencies>
+        <dependency>
+            <groupId>org.openid4java</groupId>
+            <artifactId>openid4java</artifactId>
+            <version>0.9.7</version>
+        </dependency>        
+    </dependencies>
     <build>
         <plugins>
             <plugin>
