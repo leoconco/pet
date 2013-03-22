@@ -4,6 +4,8 @@
         <title></title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link type="text/css"  rel="stylesheet"  href="public/css/bootstrap.css"/>
+        <script src="public/js/jquery-1.9.1.js" type="text/javascript"></script>
+        <script src="public/js/bootstrap.js" type="text/javascript"></script>                
     </head>
     <body>
         <div class="container-fluid">
@@ -25,10 +27,22 @@
                 </div>
             </div>
             <div class="row-fluid">
-                <form action="openidLogin">
-                    <input type="text" name="openId" class="input-large"/>
-                    <input type="submit" name="Login" class="btn"/>
-                </form>
+                1
+                2
+                3
+                <!--Open IDs login-->&nbsp;
+                <div style="margin-left: 50px; margin-top: 40px; height: 60px;">
+                    <form method="post">
+                        <div class="btn-group">
+                            <a class="btn btn-primary" href="#"><i class="icon-user icon-white"></i> login</a>
+                            <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a class="btn" href="_openid_selector?_openid_url=https://www.google.com/accounts/o8/id"><img src="public/img/google-openid.jpg" title="Login with Google account"/>  Google</a></li>
+                                <li><a class="btn" href="_openid_selector?_openid_url=https://me.yahoo.com"><img src="public/img/yahoo-openid.jpg" title="Login with Yahoo account"> Yahoo</a></li>
+                            </ul>
+                        </div>
+                    </form>           
+                </div>
             </div>
         </div>
     </body>
