@@ -15,6 +15,7 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import org.openid4java.consumer.ConsumerManager;
 
 /**
  *
@@ -27,6 +28,7 @@ public class AuthenticationFilter implements Filter {
     private String loginPage;
     private String openIdSelector;
     private String openIdParam;
+    private ConsumerManager manager;
 
     @Override
     public void init(FilterConfig pFilterConfig) throws ServletException {
