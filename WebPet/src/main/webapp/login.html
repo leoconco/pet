@@ -3,7 +3,6 @@
     <head>
         <title>Cloud Pet</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link type="text/css"  rel="stylesheet"  href="public/css/bootstrap.css"/>
         <link type="text/css"  rel="stylesheet"  href="public/css/bootstrap-responsive.css"/>
         <script type="text/javascript" src="public/js/jquery-1.9.1.js"></script>
         <script type="text/javascript" src="public/js/bootstrap.js"></script>
@@ -33,11 +32,17 @@
                 </div>
             </div>
             <div class="row-fluid">
-                <div class="span8 offset2" align="center">
-                <form action="openidLogin">
-                    <input type="text" name="openId" class="input-large"/>
-                    <input type="submit" name="Login" class="btn"/>
-                </form>
+                <!--Open IDs login-->&nbsp;
+                <div>
+                    <form method="post">
+                        <div class="btn-group">
+                            <a class="btn btn-primary" href="#"><i class="icon-user icon-white"></i> login</a>
+                            <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a class="btn" href="_openid_selector?_openid_url=https://www.google.com/accounts/o8/id"><img src="public/img/google-openid.jpg" title="Login with Google account"/>  Google</a></li>
+                                <li><a class="btn" href="_openid_selector?_openid_url=https://me.yahoo.com"><img src="public/img/yahoo-openid.jpg" title="Login with Yahoo account"> Yahoo</a></li>
+                            </ul>
+                        </div>
                 </div>
             </div>
         </div>
