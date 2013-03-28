@@ -21,7 +21,17 @@
             <groupId>org.openid4java</groupId>
             <artifactId>openid4java</artifactId>
             <version>0.9.7</version>
-        </dependency>        
+        </dependency>
+        <dependency>
+            <groupId>org.openengsb.wrapped</groupId>
+            <artifactId>com.google.gdata</artifactId>
+            <version>1.41.5.w1</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jstl</artifactId>
+            <version>1.2</version>
+        </dependency>
     </dependencies>
     <build>
         <plugins>

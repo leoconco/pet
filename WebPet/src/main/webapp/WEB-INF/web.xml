@@ -8,7 +8,11 @@
             <param-name>login_page</param-name>
             <param-value>/login.html</param-value>
         </init-param>
-         <init-param>
+        <init-param>
+            <param-name>redirect_page</param-name>
+            <param-value>/redirect.jsp</param-value>
+        </init-param>
+        <init-param>
             <param-name>public_url</param-name>
             <param-value>/public/</param-value>
         </init-param>
