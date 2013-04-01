@@ -128,4 +128,18 @@ public class AuthContext {
             return (String) properties.get(Constants.TENANT_ATTRIBUTE_LABEL);
         return null;
     }
+
+    @Override
+    public String toString() {
+        StringBuilder sbuild = new StringBuilder();
+        for(String key:properties.keySet()){
+            sbuild.append(key);
+            sbuild.append(": ");
+            sbuild.append(properties.get(key));
+            sbuild.append("\n");
+        }
+        return sbuild.toString();
+    }
+
+
 }

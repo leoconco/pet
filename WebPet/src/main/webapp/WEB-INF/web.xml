@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
     <display-name>Web Pet</display-name>
+    <welcome-file-list>
+        <welcome-file>index.jsp</welcome-file>
+    </welcome-file-list>
     <filter>
         <filter-name>AuthenticationFilter</filter-name>
         <filter-class>com.greenapple.security.AuthenticationFilter</filter-class>
@@ -11,6 +14,10 @@
         <init-param>
             <param-name>redirect_page</param-name>
             <param-value>/redirect.jsp</param-value>
+        </init-param>
+        <init-param>
+            <param-name>logout_url</param-name>
+            <param-value>/_logout</param-value>
         </init-param>
         <init-param>
             <param-name>public_url</param-name>

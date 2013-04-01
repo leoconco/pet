@@ -48,6 +48,7 @@ public class AuthenticationFilter implements Filter {
     private static final String IS_RETURN = "?is_return=true";
     private FilterConfig filterConfig;
     private String pathToIgnore;
+    private String pathToLogout;
     private String loginPage;
     private String redirectPage;
     private String openIdSelector;
@@ -61,6 +62,7 @@ public class AuthenticationFilter implements Filter {
     public void init(FilterConfig pFilterConfig) throws ServletException {
         filterConfig = pFilterConfig;
         pathToIgnore = filterConfig.getInitParameter("public_url");
+        pathToLogout = filterConfig.getInitParameter("logout_url");
         loginPage = filterConfig.getInitParameter("login_page");
         redirectPage = filterConfig.getInitParameter("redirect_page");
         openIdSelector = filterConfig.getInitParameter("openid_select");
@@ -77,10 +79,15 @@ public class AuthenticationFilter implements Filter {
         HttpServletResponse httpResponse = (HttpServletResponse) response;
         String path = httpRequest.getServletPath();
 
-        if (path.startsWith(pathToIgnore)) {
-            chain.doFilter(request, response);
-        } else {
+        if (path.startsWith(pathToLogout)){
+            httpResponse.setHeader("Cache-Control", "no-cache, no-store");
+            httpResponse.setHeader("Pragma", "no-cache");
+            httpRequest.getSession().invalidate();
+        }
 
+        if (path.startsWith(pathToIgnore)) {
+            chain.doFilter(request, response);}
+        else {
             HttpSession httpSession = httpRequest.getSession(false);
             if (TRUE_VALUE.equals(httpRequest.getParameter(IS_RETURN_PARAM))) {
                 if (processAuthResponse(httpRequest)) {
@@ -91,7 +98,6 @@ public class AuthenticationFilter implements Filter {
             } else if (httpSession == null) {
                 if (path.startsWith(openIdSelector)) {
                     String urlOpenid = httpRequest.getParameter(openIdParam);
-                    // TODO: Discover
                     doAuthRequest(httpRequest, httpResponse, urlOpenid);
 
 
@@ -115,8 +121,13 @@ public class AuthenticationFilter implements Filter {
             HttpServletRequest httpReq, HttpServletResponse httpResp, String urlOpenId)
             throws IOException, ServletException {
         try {
+            StringBuilder returnToUrl = new StringBuilder(httpReq.getRequestURL());
+            int selectorIx = returnToUrl.indexOf(openIdSelector);
+            if(selectorIx>=0){
+                returnToUrl.delete(selectorIx, selectorIx+openIdSelector.length());
+            }
 
-            String returnToUrl = httpReq.getRequestURL().toString() + IS_RETURN;
+            returnToUrl.append(IS_RETURN);
 
             // perform discovery on the user-supplied identifier
             List discoveries = manager.discover(urlOpenId);
@@ -129,7 +140,7 @@ public class AuthenticationFilter implements Filter {
             httpReq.getSession().setAttribute("openid-disc", discovered);
 
             // obtain a AuthRequest message to be sent to the OpenID provider
-            AuthRequest authReq = manager.authenticate(discovered, returnToUrl);
+            AuthRequest authReq = manager.authenticate(discovered, returnToUrl.toString());
 
             // Try SReg request first if supported else try the Attribute Exchange if supported.
             //
