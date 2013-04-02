@@ -41,6 +41,7 @@
                 <version>2.1.1</version>
                 <configuration>
                     <failOnMissingWebXml>false</failOnMissingWebXml>
+                    <webXml>${webXmlPath}</webXml>
                 </configuration>
             </plugin>
             <plugin>
@@ -72,5 +73,21 @@
     </build>
     <properties>
         <netbeans.hint.deploy.server>Tomcat</netbeans.hint.deploy.server>
+        <webXmlPath>src/main/profiles/default/web.xml</webXmlPath>
     </properties>
+    <profiles>
+        <profile>
+            <id>globant</id>
+            <properties>
+                <webXmlPath>src/main/profiles/globant/web.xml</webXmlPath>
+            </properties>
+            <build>
+                <resources>
+                    <resource>
+                        <directory>src/main/profiles/globant/classpath</directory>
+                    </resource>
+                </resources>
+            </build>
+        </profile>
+    </profiles>
 </project>
