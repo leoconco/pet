@@ -1,16 +1,30 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-   "http://www.w3.org/TR/html4/loose.dtd">
+    "http://www.w3.org/TR/html4/loose.dtd">
 
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Green Apple Cloud Pet</title>
+        <link rel="shortcut icon" href="public/img/greenapple.ico"/>
+        <link type="text/css"  rel="stylesheet"  href="public/css/bootstrap.css"/>
+        <link type="text/css"  rel="stylesheet"  href="public/css/bootstrap-responsive.css"/>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <meta name="keywords" content="greenapple,pet,leoconco,cloud"/>
+        <meta name="description" content="Pet project to test technologies in use for Cloud applications"/>
+        <meta name="author" content="Leonardo Contreras Alfonso"/>
+        <script type="text/javascript" src="public/js/jquery-1.9.1.js"></script>
+        <script type="text/javascript" src="public/js/bootstrap.js"></script>
     </head>
     <body>
-        <h1>Hello World!</h1>
-        <a href="_logout">logout</a>
+        <div class="navbar navbar-inverse">
+            <div class="navbar-inner">
+                <a class="brand" href="#">Green Apple <i class="icon-leaf icon-white"></i></a>
+                <ul class="nav pull-right">
+                    <li><a href="_logout"><i class="icon-remove icon-white"></i>logout</a></li>
+                </ul>
+            </div>
+        </div>
         <c:out value="${sessionScope['auth-context']}"></c:out>
     </body>
 </html>

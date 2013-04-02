@@ -31,6 +31,15 @@
             <param-name>openid_url_param</param-name>
             <param-value>_openid_url</param-value>
         </init-param>
+        <init-param>
+            <param-name>proxyurl_param</param-name>
+            <param-value>proxyserver01.bog.corp.globant.com</param-value>
+        </init-param>
+        <init-param>
+            <param-name>proxyport_param</param-name>
+            <param-value>3128</param-value>
+        </init-param>
+
     </filter>
     <filter-mapping>
         <filter-name>AuthenticationFilter</filter-name>

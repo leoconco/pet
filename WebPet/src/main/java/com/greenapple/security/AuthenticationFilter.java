@@ -36,6 +36,8 @@ import org.openid4java.message.ax.FetchResponse;
 import org.openid4java.message.sreg.SRegMessage;
 import org.openid4java.message.sreg.SRegRequest;
 import org.openid4java.message.sreg.SRegResponse;
+import org.openid4java.util.HttpClientFactory;
+import org.openid4java.util.ProxyProperties;
 
 /**
  *
@@ -53,6 +55,8 @@ public class AuthenticationFilter implements Filter {
     private String redirectPage;
     private String openIdSelector;
     private String openIdParam;
+    private String proxyUrl;
+    private String proxyPort;
     private ConsumerManager manager;
     private static final String CONSUMER_KEY = "d2656882-7ba0-4fdd-8ae6-a74c9da35c8f";
     private static final String CONSUMER_SECRET = "a26e1f37-6f6e-4346-a521-b2d0ad4adbea";
@@ -60,6 +64,7 @@ public class AuthenticationFilter implements Filter {
 
     @Override
     public void init(FilterConfig pFilterConfig) throws ServletException {
+
         filterConfig = pFilterConfig;
         pathToIgnore = filterConfig.getInitParameter("public_url");
         pathToLogout = filterConfig.getInitParameter("logout_url");
@@ -67,7 +72,14 @@ public class AuthenticationFilter implements Filter {
         redirectPage = filterConfig.getInitParameter("redirect_page");
         openIdSelector = filterConfig.getInitParameter("openid_select");
         openIdParam = filterConfig.getInitParameter("openid_url_param");
-        manager = new ConsumerManager();
+        proxyUrl = filterConfig.getInitParameter("proxyurl_param");
+        proxyPort = filterConfig.getInitParameter("proxyport_param");
+        if(proxyUrl != null & proxyPort !=null){
+            ProxyProperties proxyProps = new ProxyProperties();
+            proxyProps.setProxyHostName(proxyUrl);
+            proxyProps.setProxyPort(Integer.parseInt(proxyPort));
+            HttpClientFactory.setProxyProperties(proxyProps);
+        }        manager = new ConsumerManager();
         manager.setAssociations(new InMemoryConsumerAssociationStore());
         manager.setNonceVerifier(new InMemoryNonceVerifier(5000));
         manager.setMinAssocSessEnc(AssociationSessionType.DH_SHA256);
@@ -95,7 +107,7 @@ public class AuthenticationFilter implements Filter {
                 } else {
                     httpSession = null;
                 }
-            } else if (httpSession == null) {
+            } else if (httpSession == null || httpSession.getAttribute(Constants.AUTH_CONTEXT)== null) {
                 if (path.startsWith(openIdSelector)) {
                     String urlOpenid = httpRequest.getParameter(openIdParam);
                     doAuthRequest(httpRequest, httpResponse, urlOpenid);
@@ -126,9 +138,7 @@ public class AuthenticationFilter implements Filter {
             if(selectorIx>=0){
                 returnToUrl.delete(selectorIx, selectorIx+openIdSelector.length());
             }
-
             returnToUrl.append(IS_RETURN);
-
             // perform discovery on the user-supplied identifier
             List discoveries = manager.discover(urlOpenId);
 
