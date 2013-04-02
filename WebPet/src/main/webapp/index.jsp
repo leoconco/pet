@@ -21,11 +21,12 @@
             <div class="navbar-inner">
                 <a class="brand" href="#">Green Apple <i class="icon-leaf icon-white"></i></a>
                 <ul class="nav pull-right">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" ><c:out value="${sessionScope['auth-context'].EMail}"></c:out> <c:if test="${not empty sessionScope['auth-context'].tenantId}">@</c:if><c:out value="${sessionScope['auth-context'].tenantName}"></c:out> <i class="icon-user icon-white"></i> <b class="caret"></b></a>
+                    <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" ><c:out value="${sessionScope['auth-context'].EMail}"></c:out> <i class="icon-user icon-white"></i> <b class="caret"></b></a>
                     <ul class="dropdown-menu">
-                        <c:if test="${not empty sessionScope['auth-context'].tenantId}"><li><a href="index.jsp?_set_tenant=_none_"><i class="icon-eject"></i> change account</a></li></c:if>
                         <li><a href="_logout"><i class="icon-remove icon-white"></i> logout</a></li>
                     </ul>
+                    </li>
                 </ul>
             </div>
         </div>
