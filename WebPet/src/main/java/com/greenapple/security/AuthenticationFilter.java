@@ -56,7 +56,7 @@ public class AuthenticationFilter implements Filter {
     private ConsumerManager manager;
     private static final String CONSUMER_KEY = "d2656882-7ba0-4fdd-8ae6-a74c9da35c8f";
     private static final String CONSUMER_SECRET = "a26e1f37-6f6e-4346-a521-b2d0ad4adbea";
-    private static final String scopes = "https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile&";
+    private static final String scopes = "https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+https%3A%2F%2Frest.greenapple.com%2Fauth%2Frest&";
 
     @Override
     public void init(FilterConfig pFilterConfig) throws ServletException {

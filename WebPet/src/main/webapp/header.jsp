@@ -14,9 +14,11 @@
         <meta name="description" content="Pet project to test technologies in use for Cloud applications"/>
         <meta name="author" content="Leonardo Contreras Alfonso"/>
         <script type="text/javascript" src="public/js/jquery-1.9.1.js"></script>
+        <script type="text/javascript" src="public/js/angular.js"></script>
+        <script type="text/javascript" src="public/js/angular-resource.js"></script>
         <script type="text/javascript" src="public/js/bootstrap.js"></script>
     </head>
-    <body>
+    <body ng-app="<c:out value="${param.ngapp}"></c:out>" ng-controller="<c:out value="${param.ngcontroller}"></c:out>">
         <div class="navbar navbar-inverse">
             <div class="navbar-inner">
                 <a class="brand" href="#"><c:out value="${sessionScope['auth-context'].tenantName}"></c:out> <small>Green Apple</small> <i class="icon-leaf icon-white"></i></a>

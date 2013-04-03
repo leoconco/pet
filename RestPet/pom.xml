@@ -14,6 +14,23 @@
         <relativePath>../ParentPet</relativePath>
     </parent>
     <name>RestPet</name>
+    <dependencies>
+        <dependency>
+            <groupId>com.sun.jersey</groupId>
+            <artifactId>jersey-servlet</artifactId>
+            <version>1.17.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.sun.jersey</groupId>
+            <artifactId>jersey-core</artifactId>
+            <version>1.17.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.sun.jersey</groupId>
+            <artifactId>jersey-json</artifactId>
+            <version>1.17.1</version>
+        </dependency>
+    </dependencies>
     <build>
         <plugins>
             <plugin>
@@ -22,6 +39,7 @@
                 <version>2.1.1</version>
                 <configuration>
                     <failOnMissingWebXml>false</failOnMissingWebXml>
+                    <webXml>${webXmlPath}</webXml>
                 </configuration>
             </plugin>
             <plugin>
@@ -51,5 +69,8 @@
             </plugin>
         </plugins>
     </build>
-
+    <properties>
+        <netbeans.hint.deploy.server>Tomcat</netbeans.hint.deploy.server>
+        <webXmlPath>src/main/profiles/default/web.xml</webXmlPath>
+    </properties>
 </project>
